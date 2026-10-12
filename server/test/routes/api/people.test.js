@@ -17,10 +17,12 @@ test('/api/people', async (t) => {
       assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
 
       const data = JSON.parse(response.payload);
-      assert.deepStrictEqual(data.length, 3);
-      assert.deepStrictEqual(data[0].firstName, 'Bob');
-      assert.deepStrictEqual(data[1].firstName, 'Alice');
-      assert.deepStrictEqual(data[2].name, 'Community Volunteer');
+      assert.deepStrictEqual(data.length, 5);
+      assert.deepStrictEqual(data[0].firstName, 'Alex');
+      assert.deepStrictEqual(data[1].firstName, 'Bob');
+      assert.deepStrictEqual(data[2].firstName, 'Alice');
+      assert.deepStrictEqual(data[3].firstName, 'Bailey');
+      assert.deepStrictEqual(data[4].name, 'Community Volunteer');
     });
   });
 
@@ -57,7 +59,7 @@ test('/api/people', async (t) => {
 
     const data = JSON.parse(response.payload);
     assert.deepStrictEqual(data.length, 1);
-    assert.deepStrictEqual(data[0].firstName, 'Alice');
+    assert.deepStrictEqual(data[0].firstName, 'Bob');
   });
 
   await t.test('requires authentication', async (t) => {
