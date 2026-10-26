@@ -24,6 +24,41 @@ test('/api/people', async (t) => {
       assert.deepStrictEqual(data.id, person.id);
       assert.deepStrictEqual(data.firstName, 'Alice');
       assert.deepStrictEqual(data.lastName, 'Smith');
+      assert.deepStrictEqual(data.assignedPlots, []);
+    });
+
+    await t.test('returns assigned plots for a Person', async (t) => {
+      const person = await app.prisma.person.findFirst({
+        where: { firstName: 'Alice', lastName: 'Smith' },
+      });
+
+      const plot = await app.prisma.plot.findFirst({
+        where: { name: 'Alpha Garden' },
+      });
+
+      await app.prisma.plotAssignedVolunteer.create({
+        data: {
+          personId: person.id,
+          plotId: plot.id,
+        },
+      });
+
+      const response = await app.inject({
+        url: `/api/people/${person.id}`
+      }).headers(adminHeaders);
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
+
+      const data = JSON.parse(response.payload);
+
+      assert.deepStrictEqual(data.assignedPlots, [
+        {
+          id: plot.id,
+          name: 'Alpha Garden',
+          streetAddress: '100 Test St',
+          status: 'Planted',
+        },
+      ]);
     });
 
     await t.test('returns 404 when Person does not exist', async (t) => {
