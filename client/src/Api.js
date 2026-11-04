@@ -142,6 +142,13 @@ const Api = {
       return instance.get(`/api/people/${id}`);
     },
   },
+  maintenanceRecords: {
+    index (volunteerId, offset = 0, pageSize = 25) {
+      return instance.get('/api/maintenance-records', {
+        params: { volunteerId, offset, pageSize },
+      });
+    },
+  },
   plots: {
     index ({ north, south, east, west, offset, pageSize = 100 }, signal) {
       return instance.get('/api/plots', {
