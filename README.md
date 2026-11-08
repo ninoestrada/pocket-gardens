@@ -1,17 +1,68 @@
-# Full Stack Starter
+<h3 align="center" style="font-size: 2.1em; font-weight: bolder;">🌱 Pocket Gardens</h3>
 
-This repository contains a "starter" project for web application development in JavaScript. This includes the following components, from front-end to back-end:
+<p align="center">
+  A community gardening platform helping San Francisco residents grow and care for urban green spaces.
+  <br />
+  <br />
+  <a href="https://github.com/sfbrigade/pocket-gardens/issues/new">Report Bug</a>
+  ·
+  <a href="https://github.com/sfbrigade/pocket-gardens/issues/new">Request Feature</a>
+</p>
 
-- React
-- React Router
-- Mantine
-- Vite
-- Fastify
-- Prisma
-- Node.js
-- Postgres
+<!-- ABOUT THE PROJECT -->
 
-## One-time Setup
+## 📖 About the Project
+
+**Pocket Gardens** is an open-source web application designed to help people discover and care for neighborhood gardens throughout San Francisco. By making these spaces easier to find and maintain, the project hopes to encourage more people to take part in urban gardening.
+
+Even a small garden can make a difference in a neighborhood. It can catch someone's attention, spark a conversation, or inspire others to get involved and take pride in their neighborhood. But keeping these gardens growing takes time, people, and coordination. As more people pitch in, keeping track of plants, volunteers, and maintenance can become a challenge.
+
+Pocket Gardens brings all of this information together in one place, making it easier for organizers to coordinate everyone's efforts. By taking some of the work out of organizing, the project hopes to encourage more people to get involved and work together to turn overlooked spaces into gardens.
+
+### ✨ Features
+
+The following features represent existing functionality and core capabilities being developed for the platform.
+
+- **Garden Discovery:** Explore neighborhood garden plots through an interactive map and view garden information.
+- **Garden Management:** Organize garden plot information and support tracking gardens throughout their lifecycle.
+- **Plant Library:** Browse and manage plant information associated with community gardens.
+- **People Management:** Provide administrative tools for viewing and searching people records, with additional functionality under development.
+- **Maintenance Tracking:** Record and manage garden maintenance activities.
+- **Member Authentication:** Support secure member access, with passwordless authentication planned for the MVP.
+
+<!-- CONTRIBUTIONS -->
+
+## 🌿 My Contributions
+
+I've been interested in sustainability for a long time, and gardening has become one of my creative outlets. When I discovered Pocket Gardens through SF Civic Tech, I was drawn to the opportunity to bring those interests together through programming while contributing to a project that adds more greenery and character to San Francisco.
+
+As a volunteer software engineer, I work on full-stack features that help organizers manage people and garden information. My contributions so far include:
+
+- **People Directory:** Built a React and Mantine interface for viewing people records, with search and pagination to help administrators find and navigate information more easily.
+- **REST API:** Developed a Fastify endpoint using Prisma and PostgreSQL to retrieve people records, with Zod validation and admin authorization to ensure requests are validated and sensitive information is accessible only to administrators.
+- **Frontend Integration:** Connected the people directory to the backend API, using URL parameters to manage search and pagination and adding navigation links for individual person records.
+- **Automated Testing:** Created API tests using sample people records to verify that the endpoint returns the expected results, helping catch regressions as the application evolves.
+
+**Merged Pull Request:** [#39 – Add Admin People List with Search](https://github.com/sfbrigade/pocket-gardens/pull/39)
+
+<!-- TECH STACK -->
+
+## 🛠️ Tech Stack
+
+| **Front-End** | **Back-End** |
+| :---: | :---: |
+| [![JavaScript][JavaScript.com]][JavaScript-url] | [![Node.js][Node.js.com]][Node.js-url] |
+| [![React][React.com]][React-url] | [![Fastify][Fastify.com]][Fastify-url] |
+| [![React Router][ReactRouter.com]][ReactRouter-url] | [![Prisma][Prisma.com]][Prisma-url] |
+| [![Mantine][Mantine.com]][Mantine-url] | [![PostgreSQL][PostgreSQL.com]][PostgreSQL-url] |
+| [![Vite][Vite.com]][Vite-url] | [![Zod][Zod.com]][Zod-url] |
+
+
+**Development & Infrastructure:** [Docker](https://www.docker.com/), [GitHub Actions](https://github.com/features/actions), [RustFS](https://rustfs.com/), [Airtable](https://www.airtable.com/)
+
+## 🚀 Getting Started
+
+### One-time Setup
 
 1. On Github, "Fork" this git repo to your own account so that you have your own copy.
 
@@ -283,3 +334,26 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+<!------- MARKDOWN LINKS & IMAGES ------->
+
+[JavaScript.com]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[JavaScript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[React.com]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://react.dev/
+[ReactRouter.com]: https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white
+[ReactRouter-url]: https://reactrouter.com/
+[Mantine.com]: https://img.shields.io/badge/Mantine-339AF0?style=for-the-badge&logo=mantine&logoColor=white
+[Mantine-url]: https://mantine.dev/
+[Vite.com]: https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white
+[Vite-url]: https://vite.dev/
+[Node.js.com]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
+[Node.js-url]: https://nodejs.org/
+[Fastify.com]: https://img.shields.io/badge/Fastify-000000?style=for-the-badge&logo=fastify&logoColor=white
+[Fastify-url]: https://fastify.dev/
+[Prisma.com]: https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white
+[Prisma-url]: https://www.prisma.io/
+[PostgreSQL.com]: https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
+[Zod.com]: https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white
+[Zod-url]: https://zod.dev/
