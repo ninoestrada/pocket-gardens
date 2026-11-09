@@ -34,7 +34,7 @@ The following features represent existing functionality and core capabilities be
 
 ## 🌿 My Contributions
 
-I've been interested in sustainability for a long time, and gardening has become one of my creative outlets. When I discovered Pocket Gardens through SF Civic Tech, I was drawn to the opportunity to bring those interests together through programming while contributing to a project that adds more greenery and character to San Francisco.
+I've been interested in sustainability for a long time, and gardening has become one of my creative outlets. When I discovered Pocket Gardens through [SF Civic Tech](https://www.sfcivictech.org/), I was drawn to the opportunity to bring those interests together through programming while contributing to a project that adds more greenery and character to San Francisco.
 
 As a volunteer software engineer, I work on full-stack features that help organizers manage people and garden information. My contributions so far include:
 
@@ -62,9 +62,17 @@ As a volunteer software engineer, I work on full-stack features that help organi
 
 ## 🏗️ Architecture
 
+### System Architecture
+
 The diagram below shows how the different parts of Pocket Gardens work together, from the frontend and backend to the database, photo storage, and other services.
 
 ![Pocket Gardens Architecture Diagram](docs/images/architecture.jpg)
+
+### System Context
+
+The context diagram illustrates how residents and administrators interact with Pocket Gardens and how the platform exchanges data with external services for mapping, photo storage, email notifications, and garden data imports.
+
+![Pocket Gardens Context Diagram](docs/images/context-diagram.jpg)
 
 ## 🚀 Getting Started
 
