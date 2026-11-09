@@ -108,13 +108,14 @@ function AdminPersonDetail () {
                   <Table.Tr>
                     <Table.Th>Date</Table.Th>
                     <Table.Th>Plot</Table.Th>
+                    <Table.Th>Activity</Table.Th>
                     <Table.Th>Notes</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
                   {maintenanceRecords.records.length === 0 && (
                     <Table.Tr>
-                      <Table.Td colSpan={3}>
+                      <Table.Td colSpan={4}>
                         No participation history.
                       </Table.Td>
                     </Table.Tr>
@@ -123,6 +124,7 @@ function AdminPersonDetail () {
                     <Table.Tr key={record.id}>
                       <Table.Td>{record.date || 'Not provided'}</Table.Td>
                       <Table.Td>{record.plotName || 'Not provided'}</Table.Td>
+                      <Table.Td>{record.activity.length ? record.activity.join(', ') : 'Not provided'}</Table.Td>
                       <Table.Td>{record.notes || 'Not provided'}</Table.Td>
                     </Table.Tr>
                   ))}
