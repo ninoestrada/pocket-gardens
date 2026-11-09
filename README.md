@@ -60,6 +60,12 @@ As a volunteer software engineer, I work on full-stack features that help organi
 
 **Development & Infrastructure:** [Docker](https://www.docker.com/), [GitHub Actions](https://github.com/features/actions), [RustFS](https://rustfs.com/), [Airtable](https://www.airtable.com/)
 
+## 🏗️ Architecture
+
+The diagram below shows how the different parts of Pocket Gardens work together, from the frontend and backend to the database, photo storage, and other services.
+
+![Pocket Gardens Architecture Diagram](docs/images/architecture.jpg)
+
 ## 🚀 Getting Started
 
 ### One-time Setup
