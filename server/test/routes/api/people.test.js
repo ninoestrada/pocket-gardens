@@ -112,59 +112,84 @@ test('/api/people', async (t) => {
       assert.deepStrictEqual(data[3].firstName, 'Bailey');
       assert.deepStrictEqual(data[4].name, 'Community Volunteer');
     });
-  });
 
-  await t.test('filters People by search', async (t) => {
-    const response = await app.inject({
-      url: '/api/people?search=Smith'
-    }).headers(adminHeaders);
+    await t.test('filters People by search', async (t) => {
+      const response = await app.inject({
+        url: '/api/people?search=Smith'
+      }).headers(adminHeaders);
 
-    assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
+      assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
 
-    const data = JSON.parse(response.payload);
-    assert.deepStrictEqual(data.length, 1);
-    assert.deepStrictEqual(data[0].firstName, 'Alice');
-    assert.deepStrictEqual(data[0].lastName, 'Smith');
-  });
-
-  await t.test('returns an empty list when no People match', async (t) => {
-    const response = await app.inject({
-      url: '/api/people?search=Nonexistent'
-    }).headers(adminHeaders);
-
-    assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
-
-    const data = JSON.parse(response.payload);
-    assert.deepStrictEqual(data, []);
-  });
-
-  await t.test('paginates People', async (t) => {
-    const response = await app.inject({
-      url: '/api/people?page=2&perPage=1'
-    }).headers(adminHeaders);
-
-    assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
-
-    const data = JSON.parse(response.payload);
-    assert.deepStrictEqual(data.length, 1);
-    assert.deepStrictEqual(data[0].firstName, 'Bob');
-  });
-
-  await t.test('requires authentication', async (t) => {
-    const response = await app.inject({
-      url: '/api/people'
+      const data = JSON.parse(response.payload);
+      assert.deepStrictEqual(data.length, 1);
+      assert.deepStrictEqual(data[0].firstName, 'Alice');
+      assert.deepStrictEqual(data[0].lastName, 'Smith');
     });
 
-    assert.deepStrictEqual(response.statusCode, StatusCodes.UNAUTHORIZED);
-  });
+    await t.test('searches People case-insensitively', async (t) => {
+      const response = await app.inject({
+        url: '/api/people?search=bailey'
+      }).headers(adminHeaders);
 
-  await t.test('forbids non-admin users', async (t) => {
-    const userHeaders = await authenticate(app, 'regular.user@test.com', 'test');
+      assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
 
-    const response = await app.inject({
-      url: '/api/people'
-    }).headers(userHeaders);
+      const data = JSON.parse(response.payload);
+      assert.deepStrictEqual(data.length, 1);
+      assert.deepStrictEqual(data[0].firstName, 'Bailey');
+      assert.deepStrictEqual(data[0].lastName, 'Volunteer');
+    });
 
-    assert.deepStrictEqual(response.statusCode, StatusCodes.FORBIDDEN);
+    await t.test('searches emails case-insensitively', async (t) => {
+      const response = await app.inject({
+        url: '/api/people?search=ALICE@EXAMPLE.COM'
+      }).headers(adminHeaders);
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
+
+      const data = JSON.parse(response.payload);
+      assert.deepStrictEqual(data.length, 1);
+      assert.deepStrictEqual(data[0].email, 'alice@example.com');
+    });
+
+    await t.test('returns an empty list when no People match', async (t) => {
+      const response = await app.inject({
+        url: '/api/people?search=Nonexistent'
+      }).headers(adminHeaders);
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
+
+      const data = JSON.parse(response.payload);
+      assert.deepStrictEqual(data, []);
+    });
+
+    await t.test('paginates People', async (t) => {
+      const response = await app.inject({
+        url: '/api/people?page=2&perPage=1'
+      }).headers(adminHeaders);
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
+
+      const data = JSON.parse(response.payload);
+      assert.deepStrictEqual(data.length, 1);
+      assert.deepStrictEqual(data[0].firstName, 'Bob');
+    });
+
+    await t.test('requires authentication', async (t) => {
+      const response = await app.inject({
+        url: '/api/people'
+      });
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.UNAUTHORIZED);
+    });
+
+    await t.test('forbids non-admin users', async (t) => {
+      const userHeaders = await authenticate(app, 'regular.user@test.com', 'test');
+
+      const response = await app.inject({
+        url: '/api/people'
+      }).headers(userHeaders);
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.FORBIDDEN);
+    });
   });
 });
