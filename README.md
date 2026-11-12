@@ -80,12 +80,6 @@ Pocket Gardens uses PostgreSQL and Prisma to organize and store information abou
 
 For a closer look at the tables, fields, and relationships, see the [Prisma Schema](server/prisma/schema.prisma).
 
-### 🔌 API Routes
-
-The backend uses Fastify to handle API requests, with Swagger and Scalar providing an interactive reference where you can explore endpoints, view request and response details, and test requests.
-
-The API reference is available at `http://localhost:3333/api/reference` when the application is running through Docker Compose.
-
 ## 🚀 Getting Started
 
 ### One-time Setup
