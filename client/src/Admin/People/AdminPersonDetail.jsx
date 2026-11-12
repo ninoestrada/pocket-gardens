@@ -62,6 +62,7 @@ function AdminPersonDetail () {
         <Title mb='md'>{person.name || [person.firstName, person.lastName].filter(Boolean).join(' ') || 'Unnamed Person'}</Title>
         <Text>Email: {person.email || 'Not provided'}</Text>
         <Text>Phone: {person.phone || 'Not provided'}</Text>
+        <Text>Home ZIP Code: {person.homeZipCode || 'Not provided'}</Text>
 
         <Title order={2} mt='lg' mb='sm'>Assigned Plots</Title>
 

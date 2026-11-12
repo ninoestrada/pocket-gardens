@@ -15,7 +15,7 @@ test('/api/people', async (t) => {
       });
 
       const response = await app.inject({
-        url: `/api/people/${person.id}`
+        url: `/api/people/${person.id}`,
       }).headers(adminHeaders);
 
       assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
@@ -24,7 +24,35 @@ test('/api/people', async (t) => {
       assert.deepStrictEqual(data.id, person.id);
       assert.deepStrictEqual(data.firstName, 'Alice');
       assert.deepStrictEqual(data.lastName, 'Smith');
+      assert.deepStrictEqual(data.homeZipCode, null);
       assert.deepStrictEqual(data.assignedPlots, []);
+    });
+
+    await t.test('returns home ZIP code for a Person', async (t) => {
+      const person = await app.prisma.person.findFirst({
+        where: { firstName: 'Alice', lastName: 'Smith' },
+      });
+
+      const zipCode = await app.prisma.zipCode.create({
+        data: {
+          airtableId: 'recTestHomeZip',
+          code: '94110',
+        },
+      });
+
+      await app.prisma.person.update({
+        where: { id: person.id },
+        data: { homeZipId: zipCode.id },
+      });
+
+      const response = await app.inject({
+        url: `/api/people/${person.id}`,
+      }).headers(adminHeaders);
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.OK);
+
+      const data = JSON.parse(response.payload);
+      assert.deepStrictEqual(data.homeZipCode, '94110');
     });
 
     await t.test('returns assigned plots for a Person', async (t) => {
@@ -67,6 +95,14 @@ test('/api/people', async (t) => {
       }).headers(adminHeaders);
 
       assert.deepStrictEqual(response.statusCode, StatusCodes.NOT_FOUND);
+    });
+
+    await t.test('returns 422 when Person id is invalid', async (t) => {
+      const response = await app.inject({
+        url: '/api/people/not-a-uuid',
+      }).headers(adminHeaders);
+
+      assert.deepStrictEqual(response.statusCode, StatusCodes.UNPROCESSABLE_ENTITY);
     });
 
     await t.test('requires authentication', async (t) => {

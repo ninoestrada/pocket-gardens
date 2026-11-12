@@ -20,6 +20,7 @@ const AssignedPlotSchema = z.object({
 });
 
 const PersonDetailResponseSchema = PersonResponseSchema.extend({
+  homeZipCode: z.string().nullable(),
   assignedPlots: z.array(AssignedPlotSchema),
 });
 

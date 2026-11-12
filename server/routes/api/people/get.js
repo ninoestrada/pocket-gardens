@@ -26,6 +26,7 @@ export default async function (fastify, opts) {
       const data = await fastify.prisma.person.findUnique({
         where: { id },
         include: {
+          homeZip: true,
           assignedPlots: {
             include: {
               plot: true,
@@ -45,6 +46,7 @@ export default async function (fastify, opts) {
         name: data.name,
         email: data.email,
         phone: data.phone,
+        homeZipCode: data.homeZip?.code ?? null,
         assignedPlots: data.assignedPlots.map(({ plot }) => ({
           id: plot.id,
           name: plot.name,
