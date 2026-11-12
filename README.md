@@ -74,6 +74,18 @@ The context diagram illustrates how residents and administrators interact with P
 
 ![Pocket Gardens Context Diagram](docs/images/context-diagram.jpg)
 
+### 🗄️ Database Schema
+
+Pocket Gardens uses PostgreSQL and Prisma to organize and store information about gardens, plants, volunteers, user accounts, and maintenance activities. The database contains 17 models that define how this information is stored and connected.
+
+For a closer look at the tables, fields, and relationships, see the [Prisma Schema](server/prisma/schema.prisma).
+
+### 🔌 API Routes
+
+The backend uses Fastify to handle API requests, with Swagger and Scalar providing an interactive reference where you can explore endpoints, view request and response details, and test requests.
+
+The API reference is available at `http://localhost:3333/api/reference` when the application is running through Docker Compose.
+
 ## 🚀 Getting Started
 
 ### One-time Setup
